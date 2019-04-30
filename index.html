@@ -8,7 +8,9 @@
     <title>Jack 20_Shop</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-cookies.min.js"></script>   
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-cookies.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script> 
     <link rel="stylesheet" href="website/Style/Style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
@@ -95,10 +97,28 @@
                         <li class="nav-item"><a href="">Service</a></li>
                         <li class="nav-item"><a href="">Pages</a></li>
                         <li class="nav-item"><a href="">News</a></li>
-                        <li class="nav-item"><a href="">Contact</a></li>
+                        <li class="nav-item"><a href="">Contact</a></li> 
+                        <li class="nav-item dropdown" style="border:0px">
+                                <a class="btn btn-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-cart-plus" style="font-size:auto"></i><span class="badge badge-pill" ng-class="badgeColor"
+                                         style="font-size:auto; font-weight:normal; position: absolute; top:10px; left:30px">{{ getQuantity() }}</span>
+                                    </a>
+                                    
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <p>{{ emptycart }}</p>
+                                    <table> 
+                                        <tr ng-repeat="product in cart">
+                                            <td>{{product.quantity}} x {{ product.name }}</td>
+                                            <td>{{getProductCost(product)}} :-</td>
+                                            <td><button class="btn btn-link remove-item " ng-click="removeItem(product)"><i class="fas fa-trash-alt"></i></button></td>
+                                        </tr>
+                                    </table>
+                                    <h4 class="mt-2">Total: {{ getTotal() }} SEK</h4>
+                                </div>
+                            </li>
                     </ul>
                 </div>
-                <a id="header-dicoration-side-button" class="col-md-2 pt-10 p-0" style="text-align:center" href="website/Pages/index.html"> Login </a>
+                <a id="header-dicoration-side-button" class="col-md-2 pt-10 p-0" style="text-align:center" href="website/Pages/index.html"> {{ Login }} </a>
                 
             </div>
         </header>

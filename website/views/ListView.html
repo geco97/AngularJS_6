@@ -17,9 +17,16 @@
                                 <td><h5 class="list-title">{{ item.productname }}</h5></td>
                                 <td><span
                                     class="list-text">{{ item.price }}.00 kr</span></td>
-                                    <td><div class="stars-outer">
+                                    <td>
+                                        <div class="stars-outer">
                                         <div class="stars-inner" ng-style="{ 'width': rating(item.rating) }"></div>
-                                    </div></td>
+                                    </div>
+                                    <div>
+                                            <div>
+                                                <button type="button" ng-click="addItem(item)" class="btn btn-success btn-sm">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                </td>
                             </tr>
                         </tbody>   
                     </table>
