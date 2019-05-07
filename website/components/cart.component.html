@@ -1,34 +1,42 @@
 <div class="btn-group">
-        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-shopping-basket"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-            
-            <table class="" style="width:500px;">
-                <tr dir-paginate="item in namelist | orderBy:sortProducts.value | itemsPerPage: rowLimits.value">
-                    <td class="p-2"><img src="{{ item.imagebook }}" alt="{{ item.productname }}"></td>
-                    <td>
-                        {{ item.productname }} <br>
-                        <div class="stars-outer">
-                            <div class="stars-inner" ng-style="{ 'width': rating(item.rating) }"></div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" class="btn btn-link" style="font-size:18px; color:black; text-decoration: none;">+</button>
-                                <p class="px-1 pt-3">1</p>
-                                <button type="button" class="btn btn-link" style="font-size:18px; color:black; text-decoration: none;">-</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        {{ item.price }} kr
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-link"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-            </table>
+        <a class="btn btn-outline-light dropdown-toggle text-muted text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cart-plus text-dark" style="font-size:auto"></i><span class="badge badge-pill" ng-class="badgeColor"
+          style="font-size:auto; font-weight:normal; position: absolute; top:10px; left:30px">{{ getQuantity() }}</span>
+        </a>
+        <script>
+        </script>
+        <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" >
+                <form>
+                                    <p>{{ emptycart }}</p>
+                                    <table style="width:500px;"> 
+                                        <tr ng-repeat="product in cart" ng-if="product.quantity > 0">
+                                            <td class="p-2"><img src="{{ product.imagebook }}" alt="{{ product.productname }}" width="50px"></td>
+                                            <td>
+                                                    {{ product.productname }} <br>
+                                                    <div class="stars-outer">
+                                                        <div class="stars-inner" ng-style="{ 'width': rating(product.rating) }"></div>
+                                                    </div>
+                                            </td>
+                                            <td>
+                                                    <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
+                                                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                                                            <a  class="btn btn-link" style="font-size:18px; color:black; text-decoration: none;" ng-click="addProductQuantity(product)">+</a>
+                                                            <p class="px-1 pt-3">{{ product.quantity }}</p>
+                                                            <a  class="btn btn-link" style="font-size:18px; color:black; text-decoration: none;" ng-click="subProductQuantity(product)" >-</a>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                            <td>
+                                                    {{ product.price }} kr
+                                            </td>
+                                            <td>
+                                                    <a  class="btn btn-warning" ng-click="removeItem(product)"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                    <hr/>
+                                    <div class="p-2"><h4 class="mt-2" align="right">Total: {{ getTotal() }} SEK</h4></div>
+                                </form>
         </div>
       </div>

@@ -16,7 +16,9 @@
                 .then(function (res) {
                 if(res.success) {                   
                     authService.SetCredentials(res.id, res.token);
-                    $location.path("/");
+                   
+                    document.location.href = '/';
+                    $location.path("/Minsida");
                 } else {
                     dialogService.Error(res.message);
                     vm.dataLoading = false;
